@@ -1,25 +1,34 @@
 $today = get-date -format ddMMMyyyy
+$time = get-date -format HHmm\h
 
-$PackageLocation
-$EnvironmentFolder = "C:\temp"
+$PackageLocation = "C:\Users\rwatson\Downloads\ASHP-3246-8404955"
+$EnvironmentFolder = "C:\Personify\ROBERT\TST"
 $BackupLocation = "$EnvironmentFolder\Backup\$today"
 
-$BackupLocation
-mkdir $BackupLocation
+cd $EnvironmentFolder
+
+If (Test-Path $BackupLocation){
+    $BackupLocation = $BackupLocation + " $time"
+}
+
+#mkdir $BackupLocation
 
 
 
-<#
-$test = gci -path C:\users\rwatson\downloads\ASHP-3246-8404955 -recurse
+
+$test = gci -path $PackageLocation -recurse
 $a1 = @()
 
 foreach ($t in $test)
 {
-$a1 += gci -path C:\Personify\ROBERT\TST\winclient -Filter $t -recurse
+    $a1 += gci -path $EnvironmentFolder -Filter $t.name -recurse | where { ! $_.PSIsContainer }
 }
-$a1.fullname
+$a1.name
 
-
+<#
 foreach ($file in $a1)
 {
+    
+    Copy-Item -path $file -destination $BackupLocation -container
+}
 #>
