@@ -1,8 +1,8 @@
 $today = get-date -format ddMMMyyyy
 $time = get-date -format HHmm\h
 
-$PackageLocation = "C:\Users\rwatson\Downloads\ASHP-3246-8404955"
-$EnvironmentFolder = "C:\Personify\ROBERT\TST"
+$PackageLocation = ""
+$EnvironmentFolder = ""
 $BackupLocation = "$EnvironmentFolder\Backup\$today"
 
 cd $EnvironmentFolder
